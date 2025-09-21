@@ -1,0 +1,836 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ooyyy mitrr</title>
+
+  
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+
+
+  <style>
+
+    /* The initial body background is set by Tailwind.
+
+       The JS will change the background on each click.  */
+
+    body {
+
+      margin: 0;
+
+      font-family: 'Poppins', sans-serif;
+
+      color: #333;
+
+      transition: background 1s ease-in-out;
+
+      overflow-x: hidden;
+
+    }
+
+    header {
+
+      text-align: center;
+
+      padding: 60px 20px;
+
+      background: rgba(255, 255, 255, 0.7);
+
+      backdrop-filter: blur(10px);
+
+      border-bottom: 3px solid #f9d9eb;
+
+    }
+
+    header h1 {
+
+      font-size: 3rem;
+
+      color: #c2185b;
+
+      font-family: 'Dancing Script', cursive;
+
+    }
+
+    header p {
+
+      font-size: 1.3rem;
+
+      color: #555;
+
+    }
+
+    section {
+
+      padding: 50px 20px;
+
+      text-align: center;
+
+    }
+
+    .wish-box {
+
+      background: rgba(255, 255, 255, 0.85);
+
+      padding: 30px;
+
+      border-radius: 20px;
+
+      max-width: 600px;
+
+      margin: auto;
+
+      font-family: 'Dancing Script', cursive;
+
+      font-size: 1.5rem;
+
+      color: #444;
+
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+    }
+
+    footer {
+
+      text-align: center;
+
+      padding: 20px;
+
+      font-size: 0.9rem;
+
+      background: #f7a1c4;
+
+      color: white;
+
+    }
+
+    
+
+    /* Falling Petals and Sparkles Animation */
+
+    .particle {
+
+      position: fixed;
+
+      top: -10%;
+
+      width: 20px;
+
+      height: 20px;
+
+      background: #fff;
+
+      border-radius: 50%;
+
+      opacity: 0.7;
+
+      pointer-events: none;
+
+      animation: fall linear infinite;
+
+    }
+
+    .petal {
+
+      background: #f7a1c4;
+
+    }
+
+    .sparkle {
+
+      background: gold;
+
+      opacity: 0.9;
+
+      box-shadow: 0 0 5px gold, 0 0 10px gold;
+
+    }
+
+    @keyframes fall {
+
+      0% { transform: translateY(0) rotate(0deg); }
+
+      100% { transform: translateY(110vh) rotate(360deg); }
+
+    }
+
+    
+
+    /* Blessing Particles Animation from our code */
+
+    .blessing-particle {
+
+        position: fixed;
+
+        background-color: #BFDBFE;
+
+        border-radius: 50%;
+
+        pointer-events: none;
+
+        animation: bless-float 4s forwards;
+
+        animation-delay: var(--delay);
+
+        animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    }
+
+    .blessing-particle.bless-sparkle {
+
+        background-color: #BFDBFE;
+
+        box-shadow: 0 0 5px #BFDBFE, 0 0 10px #BFDBFE;
+
+    }
+
+    .blessing-particle.bless-petal {
+
+        background-color: #60A5FA;
+
+        border-radius: 20% 50%;
+
+        transform: rotate(45deg);
+
+    }
+
+    @keyframes bless-float {
+
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+
+        100% { transform: translateY(-500px) scale(0.8); opacity: 0; }
+
+    }
+
+
+
+    /* Message points reveal animation */
+
+    .message-point {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+    }
+
+    .message-point.visible {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+    .countdown-timer {
+
+      font-family: 'Poppins', sans-serif;
+
+      color: #c2185b;
+
+      font-weight: 600;
+
+    }
+
+    /* New Intro Page Styles */
+
+    #intro-page {
+
+        position: fixed;
+
+        top: 0;
+
+        left: 0;
+
+        width: 100vw;
+
+        height: 100vh;
+
+        background: linear-gradient(to top, #fce4ec, #f0f4f7);
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        text-align: center;
+
+        z-index: 100;
+
+        transition: opacity 1s ease-in-out;
+
+    }
+
+    #intro-page h1 {
+
+        font-family: 'Dancing Script', cursive;
+
+        font-size: 3rem;
+
+        color: #c2185b;
+
+        margin-bottom: 20px;
+
+    }
+
+    #intro-page p {
+
+        font-size: 1.2rem;
+
+        color: #666;
+
+    }
+
+    #intro-page .welcome-message {
+
+        font-size: 1.5rem;
+
+        font-family: 'Poppins', sans-serif;
+
+        color: #888;
+
+        animation: pulse 1.5s infinite;
+
+    }
+
+    @keyframes pulse {
+
+        0% { transform: scale(1); }
+
+        50% { transform: scale(1.05); }
+
+        100% { transform: scale(1); }
+
+    }
+
+    /* Main content initially hidden */
+
+    #main-content {
+
+        opacity: 0;
+
+        transition: opacity 1s ease-in-out;
+
+        display: none;
+
+    }
+
+    /* New style for the timer */
+
+    #countdown-container {
+
+      background-color: #fff;
+
+      padding: 1rem;
+
+      border-radius: 1rem;
+
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+      margin-top: 2rem;
+
+      margin-bottom: 2rem;
+
+      display: inline-block;
+
+      border: 3px solid #c2185b; /* Dark pink border */
+
+    }
+
+    /* Style for the countdown numbers */
+
+    .countdown-number {
+
+      font-size: 1.5rem;
+
+      font-weight: bold;
+
+      color: #c2185b;
+
+      font-family: 'Poppins', sans-serif;
+
+    }
+
+    /* New styles for the flower burst animation */
+
+    .flower {
+
+      position: absolute;
+
+      width: 20px;
+
+      height: 20px;
+
+      background-color: #f7a1c4;
+
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      animation: burst 1s ease-out forwards;
+
+    }
+
+    .flower:nth-child(2) { transform: rotate(45deg); }
+
+    .flower:nth-child(3) { transform: rotate(90deg); }
+
+    .flower:nth-child(4) { transform: rotate(135deg); }
+
+    @keyframes burst {
+
+      0% {
+
+        transform: scale(0);
+
+        opacity: 1;
+
+      }
+
+      50% {
+
+        transform: scale(1.2) translateY(-20px);
+
+        opacity: 1;
+
+      }
+
+      100% {
+
+        transform: scale(0.5) translateY(-50px);
+
+        opacity: 0;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body class="bg-gradient-to-br from-purple-100 to-pink-100">
+
+
+
+  <!-- Intro Page -->
+
+  <div id="intro-page">
+
+    <h1>For Garbapaglu <span class="text-4xl">💃🏻💫😇</span></h1>
+
+    <p class="welcome-message">Dekh kya rahi haii, Tap to kar🤭!</p>...
+
+  </div>
+
+
+
+  <!-- Main Content -->
+
+  <div id="main-content">
+
+    <header>
+
+      <div class="flex flex-col items-center">
+
+        <p class="text-xl md:text-2xl text-gray-600">a page as beautiful as my best mahila mitra 🤗</p>
+
+      </div>
+
+    </header>
+
+    
+
+    <section class="p-8 md:p-12">
+
+      <div id="card-container" class="relative bg-white p-8 md:p-12 rounded-3xl shadow-2xl text-center max-w-4xl w-full mx-auto transform transition-transform duration-500 ease-in-out scale-100 z-10">
+
+          
+
+          <p id="initial-message" class="text-xl md:text-2xl font-bold text-gray-600 transition-opacity duration-500">Tap karke thode aashirvad aur tariif bhi sun lee 😂!</p>
+
+          
+
+          <div id="blessing-message-container" class="opacity-0 transition-opacity duration-1000 ease-in mt-6">
+
+            <h2 id="heading-message" class="message-font text-4xl md:text-6xl font-bold mb-6"></h2>
+
+            <div id="message-points" class="flex flex-col md:flex-row md:space-x-8 md:space-y-0 text-gray-700 text-lg md:text-xl leading-relaxed space-y-4">
+
+            </div>
+
+          </div>
+
+
+
+          <div id="particle-area" class="absolute inset-0 z-0 overflow-hidden"></div>
+
+      </div>
+
+    </section>
+
+    
+
+    <section class="p-8 md:p-12 text-center">
+
+      <p class="text-3xl md:text-4xl font-bold text-[#c2185b] mb-4">Aee haloo haloo</p>
+
+      <p class="text-2xl md:text-3xl font-semibold text-gray-600">Have taiyar thay jauu 💫😸💕</p>
+
+    </section>
+
+
+
+    <!-- Countdown Timer -->
+
+    <div class="flex flex-col items-center p-8">
+
+      <p class="text-xl font-semibold text-gray-600 mb-4">Countdown to Navratri 2025! 🥳</p>
+
+      <div id="countdown-container" class="countdown-timer">
+
+        <p id="countdown-text" class="text-2xl font-bold text-[#c2185b]">Loading...</p>
+
+      </div>
+
+    </div>
+
+
+
+    <footer>
+
+      Made by RP for his best friend 🥰🤩
+
+    </footer>
+
+  </div>
+
+  
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const body = document.body;
+
+        const cardContainer = document.getElementById('card-container');
+
+        const initialMessage = document.getElementById('initial-message');
+
+        const blessingMessageContainer = document.getElementById('blessing-message-container');
+
+        const headingMessage = document.getElementById('heading-message');
+
+        const messagePointsContainer = document.getElementById('message-points');
+
+        const particleArea = document.getElementById('particle-area');
+
+        
+
+        const introPage = document.getElementById('intro-page');
+
+        const mainContent = document.getElementById('main-content');
+
+        
+
+        let isBlessed = false;
+
+        let currentPointIndex = 0;
+
+
+
+        const messageData = {
+
+            heading: "Happy Navratri Urvii 💫",
+
+            points: [
+
+                "On this special day, I pray to Goddess Durga to bless you with strength, happiness, and endless joy. 💫",
+
+                "May your garba steps always stay energetic, your dandiya never miss a beat, and may you continue dancing till late night without getting tired! 😄💃",
+
+                "I’m truly lucky to have you as my best friend. Just like garba circles go on smoothly, I wish our friendship also keeps moving endlessly and beautifully. 🤍✨"
+
+            ],
+
+            bgColors: ['#fde68a', '#d8eafd', '#fbcfe8']
+
+        };
+
+
+
+        function generateBlessingParticles() {
+
+            const particleCount = 40;
+
+            for (let i = 0; i < particleCount; i++) {
+
+                const particle = document.createElement('div');
+
+                const particleSize = Math.random() * 8 + 4;
+
+                const particleType = Math.random() > 0.5 ? 'bless-sparkle' : 'bless-petal';
+
+                
+
+                const randomX = Math.random() * window.innerWidth;
+
+                const randomY = window.innerHeight + Math.random() * 100;
+
+                
+
+                particle.style.width = `${particleSize}px`;
+
+                particle.style.height = `${particleSize}px`;
+
+                particle.style.left = `${randomX}px`;
+
+                particle.style.top = `${randomY}px`;
+
+                particle.style.setProperty('--delay', `${Math.random() * 0.5}s`);
+
+                particle.classList.add('blessing-particle', particleType);
+
+                particleArea.appendChild(particle);
+
+
+
+                setTimeout(() => {
+
+                    particle.remove();
+
+                }, 4500);
+
+            }
+
+        }
+
+        
+
+        function createFallingParticle() {
+
+          const particle = document.createElement('div');
+
+          const particleType = Math.random() > 0.5 ? 'petal' : 'sparkle';
+
+          particle.classList.add('particle', particleType);
+
+          particle.style.left = Math.random() * 100 + 'vw';
+
+          particle.style.animationDuration = (Math.random() * 5 + 5) + 's';
+
+          body.appendChild(particle);
+
+          setTimeout(() => particle.remove(), 10000);
+
+        }
+
+        setInterval(createFallingParticle, 500);
+
+
+
+        cardContainer.addEventListener('click', () => {
+
+            if (currentPointIndex === messageData.points.length) {
+
+                return;
+
+            }
+
+
+
+            if (!isBlessed) {
+
+                isBlessed = true;
+
+                initialMessage.classList.add('opacity-0');
+
+                blessingMessageContainer.classList.remove('opacity-0');
+
+                headingMessage.textContent = messageData.heading;
+
+            }
+
+            
+
+            const newPoint = document.createElement('p');
+
+            newPoint.textContent = messageData.points[currentPointIndex];
+
+            newPoint.classList.add('message-point', 'text-2xl', 'md:text-xl', 'flex-1', 'p-4', 'rounded-xl', 'border-2', 'border-pink-200');
+
+            messagePointsContainer.appendChild(newPoint);
+
+
+
+            setTimeout(() => {
+
+                newPoint.classList.add('visible');
+
+            }, 50); 
+
+            
+
+            body.style.background = messageData.bgColors[currentPointIndex];
+
+
+
+            currentPointIndex++;
+
+
+
+            generateBlessingParticles();
+
+        });
+
+        
+
+        // New transition logic
+
+        introPage.addEventListener('click', () => {
+
+            // Fade out the intro page
+
+            introPage.style.opacity = '0';
+
+            setTimeout(() => {
+
+                introPage.style.display = 'none';
+
+                
+
+                // Show and fade in the main content
+
+                mainContent.style.display = 'block';
+
+                setTimeout(() => {
+
+                    mainContent.style.opacity = '1';
+
+                }, 50); // Small delay to allow display change to register
+
+            }, 1000); // Wait for intro page to fade out (1 second)
+
+        });
+
+
+
+        // --- Countdown Timer Logic ---
+
+        const countdownText = document.getElementById('countdown-text');
+
+        const targetDate = new Date('September 22, 2025 00:00:00').getTime();
+
+
+
+        function createFlowerBurst() {
+
+          const flowerContainer = document.createElement('div');
+
+          flowerContainer.style.position = 'absolute';
+
+          flowerContainer.style.left = Math.random() * 100 + 'vw';
+
+          flowerContainer.style.top = Math.random() * 50 + 50 + 'vh';
+
+          
+
+          for (let i = 0; i < 4; i++) {
+
+            const flower = document.createElement('div');
+
+            flower.classList.add('flower');
+
+            flowerContainer.appendChild(flower);
+
+          }
+
+          document.body.appendChild(flowerContainer);
+
+          setTimeout(() => flowerContainer.remove(), 1000);
+
+        }
+
+
+
+        const updateCountdown = () => {
+
+          const now = new Date().getTime();
+
+          const distance = targetDate - now;
+
+
+
+          if (distance < 0) {
+
+            clearInterval(countdownInterval);
+
+            countdownText.textContent = "Happy Navratri!";
+
+            return;
+
+          }
+
+
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+
+          createFlowerBurst();
+
+
+
+          const formatNumber = (num) => num.toString().padStart(2, '0');
+
+
+
+          countdownText.textContent = `${formatNumber(days)}d ${formatNumber(hours)}h ${formatNumber(minutes)}m ${formatNumber(seconds)}s`;
+
+        };
+
+
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+
+        updateCountdown();
+
+    });
+
+  </script>
+
+</body>
+
+</html>
+
